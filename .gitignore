@@ -30,3 +30,11 @@ sysinfo.txt
 *.unitypackage
 /prueba - copia.txt
 /ProjectSettings
+/Assets/Scripts.meta
+/Assets/Scripts/PlayerController_2.cs.meta
+/Assets/Scripts/PlayerController_1.cs.meta
+/Assets/Scripts/Move.cs.meta
+/Assets/Scripts/CPesoPlayer.cs.meta
+/Assets/Scripts/CDecorationSpawner.cs.meta
+/Assets/Scripts/CDecorationController.cs.meta
+/Assets/Scripts/CBarcoController.cs.meta
