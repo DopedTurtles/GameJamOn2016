@@ -111,4 +111,5 @@ public class CBarcoController : MonoBehaviour {
         paraPesar.Add(toAdd);
     }
 
+
 }

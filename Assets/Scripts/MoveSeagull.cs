@@ -27,7 +27,7 @@ public class MoveSeagull : MonoBehaviour {
         }
         if (stop)
         {
-            this.transform.position = siteToGo.transform.parent.position;
+            //this.transform = siteToGo.transform.parent;
         }
     }
   
