@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CSharkController : MonoBehaviour {
-
-    public int sharkPeso = 15;
+public class CSharkController : MonoBehaviour { 
     public float sharkVelocidad=10f;
     public float umbral=1f;
     public float offsetY=10f;
@@ -37,7 +35,7 @@ public class CSharkController : MonoBehaviour {
         else
         {
             //Llegado al punto y mordido el barco
-            GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso();
+            GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(this.GetComponent<CPesoPlayer>());
         }
     }
 }
