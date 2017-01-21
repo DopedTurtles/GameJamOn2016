@@ -15,7 +15,7 @@ public class CDecorationSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if (mTiempoRandom)
-            mTiempoSpawn = Random.Range(0, 15);
+            mTiempoSpawn = Random.Range(mTiempoSpawn-5, mTiempoSpawn+5);
         timer = mTiempoSpawn;
         
 	}
@@ -27,7 +27,7 @@ public class CDecorationSpawner : MonoBehaviour {
         {
             SpawnDecoracion();
             if (mTiempoRandom)
-                mTiempoSpawn = Random.Range(0, 15);
+                mTiempoSpawn = Random.Range(mTiempoSpawn - 5, mTiempoSpawn + 5);
             timer = mTiempoSpawn;
         }
     }
@@ -37,6 +37,7 @@ public class CDecorationSpawner : MonoBehaviour {
         int index = Random.Range(0, mDecoraciones.Count-1);
         GameObject ob = (GameObject)Instantiate(mDecoraciones[index],transform.position,transform.rotation);
         CDecorationController cont = (CDecorationController)ob.GetComponent<CDecorationController>();
+        ob.GetComponentInChildren<Transform>().Rotate(0, Random.Range(0, 180), 0);
         cont.SetMaxDisplacement(mMaxDistance);
         cont.SetVelocidad(mVelocidad/5);
     }
