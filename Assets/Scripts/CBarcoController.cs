@@ -113,7 +113,6 @@ public class CBarcoController : MonoBehaviour
     public int addPeso(float toAdd)
     {
         paraPesar.Add(toAdd);
-        Debug.Log(paraPesar.Count);
         return paraPesar.Count;
     }
 

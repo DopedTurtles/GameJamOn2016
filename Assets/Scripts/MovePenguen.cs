@@ -6,8 +6,9 @@ public class MovePenguen : MonoBehaviour
     public float RSpeed = 25;
     public float speed = 0.01f;
     private float pesoOriginal;
-    private int IdEvento = 0;
     private bool go = true;
+    private int IdEvento;
+   
     GameObject ship;
     void Start()
     {
@@ -52,8 +53,7 @@ public class MovePenguen : MonoBehaviour
     }
     void GoAway()
     {
-        GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().removePeso(IdEvento);
-
-        go  = true;
+      GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().removePeso(IdEvento);
+       go  = true;
     }
 }
