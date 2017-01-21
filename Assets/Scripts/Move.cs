@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
     void Start()
     {
         rotationShip = transform.parent.rotation.x;
-        Debug.Log(rotationShip);
+       // Debug.Log(rotationShip);
     }
 
     // Update is called once per frame

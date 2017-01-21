@@ -2,10 +2,25 @@
 using System.Collections;
 
 public class CBarcoController : MonoBehaviour {
+    //Variable clave
+    public float aceleracion = 0f;
 
-    public float mRotationSpeed = 1f;
+
+    public float mRotationSpeed = 0f;
+    
     public string mTagPlayer1 = "Player1";
     public string mTagPlayer2 = "Player2";
+    public Transform boatFront;
+    public Transform boatBack;
+    
+
+    public float rotationSpeedWaves = 1f;
+    public float rotationSpeedPlayer = 1f;
+    //Variables para RayTrace
+    public float maxDistancia;
+    public float rayDuration = 3f;
+    private float frontDistance;
+    private float backDistance;
 
     // Use this for initialization
     void Start () {
@@ -14,6 +29,18 @@ public class CBarcoController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        RaycastHit frontHit;
+        RaycastHit backHit;
+
+        Debug.DrawRay(boatFront.position, Vector3.down,Color.red);
+        Debug.DrawRay(boatBack.position, Vector3.down, Color.red);
+        if (Physics.Raycast(boatFront.position, Vector3.down, out frontHit, maxDistancia))
+            frontDistance = frontHit.distance;
+        if (Physics.Raycast(boatBack.position, Vector3.down, out backHit, maxDistancia))
+            backDistance = backHit.distance;
+
+
+ 
     }
 
     void LateUpdate()
@@ -26,19 +53,28 @@ public class CBarcoController : MonoBehaviour {
     **/
     private void RotateShip(float rotation)
     {
-        this.transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(rotation, transform.rotation.y, this.transform.rotation.z,this.transform.rotation.w), (Time.deltaTime * this.mRotationSpeed)/100);
+        this.transform.Rotate(rotation * Time.deltaTime, 0, 0);
     }
 
     private void CalculateRotation()
     {
-        float finalRotation = 0;
+        float aceleracionPlayers = 0;
         GameObject player1 = GameObject.FindGameObjectWithTag(this.mTagPlayer1);
         GameObject player2 = GameObject.FindGameObjectWithTag(this.mTagPlayer2);
         CPesoPlayer peso1 = (CPesoPlayer)player1.GetComponent<CPesoPlayer>();
         CPesoPlayer peso2 = (CPesoPlayer)player2.GetComponent<CPesoPlayer>();
         float dp1 = player1.transform.localPosition.z;
         float dp2 = player2.transform.localPosition.z;
-        finalRotation = peso1.mPeso*Mathf.Abs(dp1) - peso2.mPeso*Mathf.Abs(dp2);
-        this.RotateShip(finalRotation);
+        aceleracionPlayers = peso1.mPeso*dp1 + peso2.mPeso*dp2;
+        this.CalculateRotationWave(aceleracionPlayers);
+    }
+
+    private void CalculateRotationWave(float aceleracionPlayers)
+    {
+        float pendiente1 = Mathf.Atan((backDistance - frontDistance) / (Mathf.Abs(boatBack.position.z - boatFront.position.z)));
+        float pendiente2 = this.transform.rotation.x;
+        aceleracion = (-(pendiente2 - pendiente1) * rotationSpeedWaves) + (aceleracionPlayers*rotationSpeedPlayer);
+        mRotationSpeed += aceleracion*Time.deltaTime;
+        this.RotateShip(mRotationSpeed);
     }
 }
