@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Grab : MonoBehaviour {
     private float positionShip;
-    private float   offSet;
+    private float offSet;
     private float originalFall;
 	// Use this for initialization
 	void Start () {

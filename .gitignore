@@ -56,11 +56,7 @@ sysinfo.txt
 /Assets/Scripts.meta
 /Assets/Prefabs.meta
 /Assets/Audio.meta
-/Assets/Models/tile_mar_04.FBX
-/Assets/Models/tile_mar_03.FBX
-/Assets/Models/tile_mar_02.FBX
-/Assets/Models/tile_mar_01.FBX
-/Assets/Models/Materials/No Name.mat
-/Assets/_Scenes/PruebaMario.unity
-/Assets/_Scenes/Level1/ReflectionProbe-0.exr
-/Assets/_Scenes/Level1/LightingData.asset
+/Assets/Ship.mat
+/Assets/Pruebas.unity
+/Assets/Player_2.mat
+/Assets/Player_1.mat
