@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CBarcoController : MonoBehaviour {
     //Variable clave
     public float aceleracion = 0f;
 
+    List<CPesoPlayer> paraPesar;
 
     public float mRotationSpeed = 0f;
     
@@ -103,4 +105,6 @@ public class CBarcoController : MonoBehaviour {
         this.transform.position = new Vector3(transform.position.x, offsetY+0.5f, transform.position.z);
         this.RotateShip(mRotationSpeed);
     }
+
+
 }
