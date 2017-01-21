@@ -7,6 +7,9 @@ public class Move : MonoBehaviour
     private float rotationShip;
     public float forceAcceleration;
     public float forceFall;
+    public float limitLeft = -6f;
+    public float limitRight = 6f;
+    public float t = 0;
     // Use this for initialization
     void Start()
     {
@@ -16,8 +19,14 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        t = this.transform.localPosition.z;
         rotationShip = transform.parent.rotation.x;
-        movePlayerInclination();
+            movePlayerInclination();
+        if (this.transform.localPosition.z > limitRight)
+            this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, limitRight);
+        if (this.transform.localPosition.z < limitLeft)
+            this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, limitLeft); ;
+
     }
 
     public void movePlayer(bool moveLeft, float speed)
