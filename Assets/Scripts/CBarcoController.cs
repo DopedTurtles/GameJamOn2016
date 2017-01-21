@@ -12,8 +12,9 @@ public class CBarcoController : MonoBehaviour {
     public string mTagPlayer2 = "Player2";
     public Transform boatFront;
     public Transform boatBack;
-    
 
+
+    public float y2 = 0;
     public float rotationSpeedWaves = 1f;
     public float rotationSpeedPlayer = 1f;
     //Variables para RayTrace
@@ -21,6 +22,7 @@ public class CBarcoController : MonoBehaviour {
     public float rayDuration = 3f;
     private float frontDistance;
     private float backDistance;
+    public float offsetY = 0;
 
     // Use this for initialization
     void Start () {
@@ -31,14 +33,25 @@ public class CBarcoController : MonoBehaviour {
     void Update () {
         RaycastHit frontHit;
         RaycastHit backHit;
+        RaycastHit middleHit;
 
         Debug.DrawRay(boatFront.position, Vector3.down,Color.red);
         Debug.DrawRay(boatBack.position, Vector3.down, Color.red);
         if (Physics.Raycast(boatFront.position, Vector3.down, out frontHit, maxDistancia))
             frontDistance = frontHit.distance;
+        else
+            frontDistance = 0;
+
         if (Physics.Raycast(boatBack.position, Vector3.down, out backHit, maxDistancia))
             backDistance = backHit.distance;
+        else
+            backDistance = 0;
 
+        if (Physics.Raycast(transform.position, Vector3.down, out middleHit, maxDistancia))
+        {
+            y2 = middleHit.point.y;
+            offsetY = middleHit.point.y;
+        }
 
  
     }
@@ -71,10 +84,23 @@ public class CBarcoController : MonoBehaviour {
 
     private void CalculateRotationWave(float aceleracionPlayers)
     {
-        float pendiente1 = Mathf.Atan((backDistance - frontDistance) / (Mathf.Abs(boatBack.position.z - boatFront.position.z)));
+        float pendiente1 = 0;
+        if (backDistance>0 && frontDistance>0)
+        pendiente1 = Mathf.Atan((backDistance - frontDistance) / (Mathf.Abs(boatBack.position.z - boatFront.position.z)));
+        if (backDistance <= 0) { 
+            pendiente1 -= 10 * frontDistance;
+            }
+        if (frontDistance <= 0)
+        {
+                pendiente1 += 10 * backDistance;
+        }
         float pendiente2 = this.transform.rotation.x;
+        
         aceleracion = (-(pendiente2 - pendiente1) * rotationSpeedWaves) + (aceleracionPlayers*rotationSpeedPlayer);
         mRotationSpeed += aceleracion*Time.deltaTime;
+        if (backDistance < 1 && frontDistance < 1 && (mRotationSpeed > 5|| mRotationSpeed< -5))
+            aceleracion = aceleracion*0.2f;
+        this.transform.position = new Vector3(transform.position.x, offsetY+0.5f, transform.position.z);
         this.RotateShip(mRotationSpeed);
     }
 }
