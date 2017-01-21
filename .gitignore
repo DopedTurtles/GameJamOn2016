@@ -17,7 +17,7 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
-
+*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -30,3 +30,29 @@ sysinfo.txt
 *.unitypackage
 /prueba - copia.txt
 /ProjectSettings
+/Assets/Prefabs/MainMenu.prefab.meta
+/Assets/Prefabs/GameOverMenu.prefab.meta
+/Assets/Prefabs/GameController.prefab.meta
+/Assets/Scripts/SoundController.cs.meta
+/Assets/Scripts/PlayerController_2.cs.meta
+/Assets/Scripts/PlayerController_1.cs.meta
+/Assets/Scripts/Move.cs.meta
+/Assets/Scripts/Menu.meta
+/Assets/Scripts/Menu/MainMenuScript.cs.meta
+/Assets/Scripts/Menu/GameOverScript.cs.meta
+/Assets/Scripts/CWaveSpawnerController.cs.meta
+/Assets/Scripts/CWaveController.cs.meta
+/Assets/Scripts/CPesoPlayer.cs.meta
+/Assets/Scripts/CLevelController.cs.meta
+/Assets/Scripts/CGameController.cs.meta
+/Assets/Scripts/CDecorationSpawner.cs.meta
+/Assets/Scripts/CDecorationController.cs.meta
+/Assets/Scripts/CBarcoController.cs.meta
+/Assets/_Scenes.meta
+/Assets/_Scenes/MainMenu.unity.meta
+/Assets/_Scenes/Main.unity.meta
+/Assets/_Scenes/Level1.unity.meta
+/Assets/_Scenes/GameOverMenu.unity.meta
+/Assets/Scripts.meta
+/Assets/Prefabs.meta
+/Assets/Audio.meta
