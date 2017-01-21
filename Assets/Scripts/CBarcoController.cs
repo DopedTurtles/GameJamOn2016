@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CBarcoController : MonoBehaviour {
+public class CBarcoController : MonoBehaviour
+{
     //Variable clave
     public float aceleracion = 0f;
 
-    List<CPesoPlayer> paraPesar;
+    List<float> paraPesar;
 
     public float mRotationSpeed = 0f;
     
@@ -27,17 +28,19 @@ public class CBarcoController : MonoBehaviour {
     public float offsetY = 0;
 
     // Use this for initialization
-    void Start () {
-        
+    void Start()
+    {
+        paraPesar = new List<float>();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         RaycastHit frontHit;
         RaycastHit backHit;
         RaycastHit middleHit;
 
-        Debug.DrawRay(boatFront.position, Vector3.down,Color.red);
+        Debug.DrawRay(boatFront.position, Vector3.down, Color.red);
         Debug.DrawRay(boatBack.position, Vector3.down, Color.red);
         if (Physics.Raycast(boatFront.position, Vector3.down, out frontHit, maxDistancia))
             frontDistance = frontHit.distance;
@@ -109,10 +112,16 @@ public class CBarcoController : MonoBehaviour {
         this.RotateShip(mRotationSpeed);
     }
 
-    public void addPeso(CPesoPlayer toAdd)
+    public int addPeso(float toAdd)
     {
         paraPesar.Add(toAdd);
+        Debug.Log(paraPesar.Count);
+        return paraPesar.Count;
     }
 
+    public void removePeso(int idEvent)
+    {
+        paraPesar.RemoveAt(idEvent);
+    }
 
 }

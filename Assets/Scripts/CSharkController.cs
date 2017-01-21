@@ -35,7 +35,7 @@ public class CSharkController : MonoBehaviour {
         else
         {
             //Llegado al punto y mordido el barco
-            GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(this.GetComponent<CPesoPlayer>());
+            GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(this.GetComponent<CPesoPlayer>().mPeso);
         }
     }
 }

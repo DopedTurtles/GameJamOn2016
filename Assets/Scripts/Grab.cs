@@ -17,7 +17,7 @@ public class Grab : MonoBehaviour {
         positionShip = transform.parent.position.z;
         grabCenterShip();
     }
-    //prueba
+   
     void grabCenterShip()
     {
         if(offSet + positionShip > transform.position.z && positionShip - offSet < transform.position.z) gameObject.GetComponent<Move>().forceFall = 0;
