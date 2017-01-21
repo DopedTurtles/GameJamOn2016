@@ -106,5 +106,9 @@ public class CBarcoController : MonoBehaviour {
         this.RotateShip(mRotationSpeed);
     }
 
+    public void addPeso(CPesoPlayer toAdd)
+    {
+        paraPesar.Add(toAdd);
+    }
 
 }
