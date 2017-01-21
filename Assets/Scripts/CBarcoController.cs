@@ -95,11 +95,11 @@ public class CBarcoController : MonoBehaviour {
                 pendiente1 += 10 * backDistance;
         }
         float pendiente2 = this.transform.rotation.x;
-        
+
+        if (backDistance < 1 && frontDistance < 1 && (mRotationSpeed > 5 || mRotationSpeed < -5))
+            mRotationSpeed = mRotationSpeed * 0.5f;
         aceleracion = (-(pendiente2 - pendiente1) * rotationSpeedWaves) + (aceleracionPlayers*rotationSpeedPlayer);
         mRotationSpeed += aceleracion*Time.deltaTime;
-        if (backDistance < 1 && frontDistance < 1 && (mRotationSpeed > 5|| mRotationSpeed< -5))
-            aceleracion = aceleracion*0.2f;
         this.transform.position = new Vector3(transform.position.x, offsetY+0.5f, transform.position.z);
         this.RotateShip(mRotationSpeed);
     }
