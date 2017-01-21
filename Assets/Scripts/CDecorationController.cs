@@ -17,7 +17,7 @@ public class CDecorationController : MonoBehaviour {
 	void Update () {
         if (Vector3.Distance(this.mFirstPosition, transform.position) > mMaxDisplacement*10)
             GameObject.Destroy(this.gameObject);
-        this.transform.Translate(Vector3.forward * mVelocidad);
+        this.transform.Translate(Vector3.forward*mVelocidad);
 	}
 
     public void SetVelocidad(float velocidad)

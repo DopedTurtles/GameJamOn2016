@@ -37,7 +37,6 @@ public class CDecorationSpawner : MonoBehaviour {
         int index = Random.Range(0, mDecoraciones.Count-1);
         GameObject ob = (GameObject)Instantiate(mDecoraciones[index],transform.position,transform.rotation);
         CDecorationController cont = (CDecorationController)ob.GetComponent<CDecorationController>();
-        ob.GetComponentInChildren<Transform>().Rotate(0, Random.Range(0, 180), 0);
         cont.SetMaxDisplacement(mMaxDistance);
         cont.SetVelocidad(mVelocidad/5);
     }

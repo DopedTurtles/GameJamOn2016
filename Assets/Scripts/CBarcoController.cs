@@ -92,6 +92,7 @@ public class CBarcoController : MonoBehaviour
         float pendiente1 = 0;
         if (backDistance>0 && frontDistance>0)
         pendiente1 = Mathf.Atan((backDistance - frontDistance) / (Mathf.Abs(boatBack.position.z - boatFront.position.z)));
+
         if (backDistance <= 0) { 
             pendiente1 -= 10 * frontDistance;
             }
@@ -99,6 +100,7 @@ public class CBarcoController : MonoBehaviour
         {
                 pendiente1 += 10 * backDistance;
         }
+
         float pendiente2 = this.transform.rotation.x;
 
         aceleracion = (-(pendiente2 - pendiente1) * rotationSpeedWaves) + (aceleracionPlayers * rotationSpeedPlayer);
@@ -106,7 +108,7 @@ public class CBarcoController : MonoBehaviour
 
         mRotationSpeed += (aceleracion -mRotationSpeed*1f)*Time.deltaTime;
         if (offsetY <= 0)
-            offsetY = 0.6f;
+            offsetY = 0.5f;
         this.transform.position = new Vector3(transform.position.x, offsetY+0.3f, transform.position.z);
 
         this.RotateShip(mRotationSpeed);
