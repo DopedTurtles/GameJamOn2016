@@ -28,6 +28,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.meta
 /prueba - copia.txt
 /ProjectSettings
 /Assets/Scripts.meta
@@ -38,3 +39,7 @@ sysinfo.txt
 /Assets/Scripts/CDecorationSpawner.cs.meta
 /Assets/Scripts/CDecorationController.cs.meta
 /Assets/Scripts/CBarcoController.cs.meta
+/Assets/_Scenes/PruebaMario.unity.meta
+/Assets/_Scenes
+/Assets/Prefabs/WavePrueba.prefab.meta
+/Assets/Prefabs/WavePrueba.prefab

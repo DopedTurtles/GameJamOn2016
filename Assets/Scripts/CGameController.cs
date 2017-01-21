@@ -13,7 +13,7 @@ public class CGameController : MonoBehaviour {
 	void Start ()
     {
         DontDestroyOnLoad(gameObject);
-        //CargaNivel("MainMenu");
+        CargaNivel("MainMenu");
 	}
 
 
