@@ -3,13 +3,14 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour {
-
     //Variables del propio Menu
     private CGameController gameController;
+    public string gameControllerTag= "GameController";
+    public string mainMenuTag = "MainMenu";
 
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CGameController>();
+        gameController = GameObject.FindGameObjectWithTag(gameControllerTag).GetComponent<CGameController>();
     }
 
     /*
@@ -28,6 +29,6 @@ public class GameOverScript : MonoBehaviour {
      */
     public void ToMenuPulsado()
     {
-        gameController.CargaNivel("MainMenu");
+        gameController.CargaNivel(mainMenuTag);
     }
 }

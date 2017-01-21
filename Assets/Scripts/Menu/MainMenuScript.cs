@@ -5,10 +5,12 @@ public class MainMenuScript : MonoBehaviour {
 
     //Variables del propio Menu
     private CGameController gameController;
+    public string gameControllerTag = "GameController";
+    public string gameLevelTag = "Level1";
 
     private void Start()
     { 
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CGameController>();
+        gameController = GameObject.FindGameObjectWithTag(gameControllerTag).GetComponent<CGameController>();
     }
 
     /*
@@ -18,7 +20,7 @@ public class MainMenuScript : MonoBehaviour {
     public void StartPulsado()
     {
         //Aqui fundido a negro
-        gameController.CargaNivel("Level1");
+        gameController.CargaNivel(gameLevelTag);
     }
 
     /*

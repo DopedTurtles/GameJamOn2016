@@ -8,6 +8,7 @@ public class CLevelController : MonoBehaviour {
     private int idEstado;
     private int dificultad;
     private CGameController gameController;
+    public string gameControllerTag = "GameController";
     //Variables para WavesController
     public float waveParam1;
     public float waveParam2;
@@ -22,7 +23,7 @@ public class CLevelController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CGameController>();
+        gameController = GameObject.FindGameObjectWithTag(gameControllerTag).GetComponent<CGameController>();
     }
 	
 	// Update is called once per frame
