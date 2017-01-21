@@ -16,7 +16,6 @@ public class Grab : MonoBehaviour {
 	void Update () {
         positionShip = transform.parent.position.z;
         grabCenterShip();
-        Debug.Log(positionShip);
     }
 
     void grabCenterShip()
