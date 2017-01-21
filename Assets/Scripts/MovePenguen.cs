@@ -6,10 +6,12 @@ public class MovePenguen : MonoBehaviour
     public float RSpeed = 25;
     public float speed = 0.01f;
     private float pesoOriginal;
+    private int IdEvento = 0;
+    private bool go = true;
     GameObject ship;
     void Start()
     {
-        ship = GameObject.FindGameObjectWithTag("Barco");
+        ship = GameObject.FindGameObjectWithTag("barco");
         pesoOriginal = this.GetComponent<CPesoPlayer>().mPeso;
         this.GetComponent<CPesoPlayer>().mPeso = 0;
     }
@@ -22,31 +24,36 @@ public class MovePenguen : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Barco")
+        if (other.tag == "PinguinStop")
         {
             RSpeed = 0;
             StartCoroutine("Desplazar");
-           // StartCoroutine("Levantar");
         }
-
     }
   
     IEnumerator Desplazar()
     {
-        for (int f = 0; f < 20; f++)
+        for (int f = 0; f < 15; f++)
         {
-            transform.Translate(Vector3.up * Time.deltaTime * 10f);
+            transform.Translate(Vector3.up * Time.deltaTime * 20f);
             yield return null;
         }
         StartCoroutine("Levantar");
     }
     IEnumerator Levantar()
     {
-        for (int f = 0; f < 50; f++)
+        for (int f = 0; f < 40; f++)
         {
-            transform.Rotate(-Vector3.right * Time.deltaTime * 120, Space.World);
+            transform.Rotate(-Vector3.right * Time.deltaTime * 150, Space.World);
             yield return null;
         }
-        this.GetComponent<CPesoPlayer>().mPeso = pesoOriginal;
+        IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
+        Invoke("GoAway", 5);
+    }
+    void GoAway()
+    {
+        GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().removePeso(IdEvento);
+
+        go  = true;
     }
 }
