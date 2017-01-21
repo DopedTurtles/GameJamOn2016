@@ -6,6 +6,7 @@ public class MoveSeagull : MonoBehaviour {
     private float distance ;
     public float speedSeagull = 10;
     private float pesoOriginal;
+    private bool stop = false;
     // Use this for initialization
     void Start () {
         pesoOriginal = this.GetComponent<CPesoPlayer>().mPeso;
@@ -16,12 +17,18 @@ public class MoveSeagull : MonoBehaviour {
 	void Update () {
         transform.LookAt(siteToGo.position);
         distance = Vector3.Distance(transform.position, siteToGo.position);
-        if (distance >= 0.5)
+        if (distance >= 0.5 && !stop)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speedSeagull);
-
-        }else this.GetComponent<CPesoPlayer>().mPeso = pesoOriginal;
-
+        }else
+        {
+            this.GetComponent<CPesoPlayer>().mPeso = pesoOriginal;
+            stop = true;
+        }
+        if (stop)
+        {
+            this.transform = siteToGo.transform.parent;
+        }
     }
   
 }
