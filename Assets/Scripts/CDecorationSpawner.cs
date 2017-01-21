@@ -10,6 +10,7 @@ public class CDecorationSpawner : MonoBehaviour {
     public float mTiempoSpawn = 1f;
     public bool mTiempoRandom = false;
     public float timer;
+    public float mMaxDistance = 500f;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +37,7 @@ public class CDecorationSpawner : MonoBehaviour {
         int index = Random.Range(0, mDecoraciones.Count-1);
         GameObject ob = (GameObject)Instantiate(mDecoraciones[index],transform.position,transform.rotation);
         CDecorationController cont = (CDecorationController)ob.GetComponent<CDecorationController>();
+        cont.SetMaxDisplacement(mMaxDistance);
         cont.SetVelocidad(mVelocidad/5);
     }
 
