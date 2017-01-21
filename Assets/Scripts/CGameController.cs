@@ -5,7 +5,9 @@ using System.Collections;
 public class CGameController : MonoBehaviour {
 
     //Variables de GameController [PERSISTENTES]
-   private string ultimaEscenaCargada;
+    private string ultimaEscenaCargada;
+    public string mainMenuScene = "MainMenu";
+    public string gameOverScene = "GameOverMenu";
 
     //Variables para LevelController
     private int dificultad;
@@ -13,7 +15,7 @@ public class CGameController : MonoBehaviour {
 	void Start ()
     {
         DontDestroyOnLoad(gameObject);
-        //CargaNivel("MainMenu");
+        CargaNivel(mainMenuScene);
 	}
 
 
@@ -55,6 +57,6 @@ public class CGameController : MonoBehaviour {
     */
     public void GameOver()
     {
-        SceneManager.LoadScene("GameOverMenu");
+        SceneManager.LoadScene(gameOverScene);
     }
 }
