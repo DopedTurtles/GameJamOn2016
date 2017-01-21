@@ -26,7 +26,9 @@ public class MovePenguen : MonoBehaviour
         {
             RSpeed = 0;
             StartCoroutine("Desplazar");
+           // StartCoroutine("Levantar");
         }
+
     }
   
     IEnumerator Desplazar()
