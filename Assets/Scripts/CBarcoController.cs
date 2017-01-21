@@ -100,7 +100,7 @@ public class CBarcoController : MonoBehaviour {
             mRotationSpeed = mRotationSpeed * 0.5f;
         aceleracion = (-(pendiente2 - pendiente1) * rotationSpeedWaves) + (aceleracionPlayers*rotationSpeedPlayer);
         mRotationSpeed += aceleracion*Time.deltaTime;
-        this.transform.position = new Vector3(transform.position.x, offsetY+0.5f, transform.position.z);
+        this.transform.position = new Vector3(transform.position.x, offsetY+0.3f, transform.position.z);
         this.RotateShip(mRotationSpeed);
     }
 }
