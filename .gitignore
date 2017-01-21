@@ -28,5 +28,21 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.meta
 /prueba - copia.txt
 /ProjectSettings
+/Assets/Scripts/PlayerController_2.cs.meta
+/Assets/Scripts/PlayerController_1.cs.meta
+/Assets/Scripts/Move.cs.meta
+/Assets/Scripts/Grab.cs.meta
+/Assets/Scripts/CPesoPlayer.cs.meta
+/Assets/Scripts/CBarcoController.cs.meta
+/Assets/Ship.mat.meta
+/Assets/Ship.mat
+/Assets/Scripts.meta
+/Assets/Pruebas.unity.meta
+/Assets/Pruebas.unity
+/Assets/Player_2.mat.meta
+/Assets/Player_2.mat
+/Assets/Player_1.mat.meta
+/Assets/Player_1.mat

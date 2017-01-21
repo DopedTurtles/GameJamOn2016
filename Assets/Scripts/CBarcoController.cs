@@ -4,7 +4,6 @@ using System.Collections;
 public class CBarcoController : MonoBehaviour {
 
     public float mRotationSpeed = 1f;
-    public float mRotation = 0.0f;
     public string mTagPlayer1 = "Player1";
     public string mTagPlayer2 = "Player2";
 

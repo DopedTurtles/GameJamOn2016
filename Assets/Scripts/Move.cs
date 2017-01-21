@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour {
+public class Move : MonoBehaviour
+{
 
     private float rotationShip;
-    public  float forceAcceleration;
-    public  float forceFall;
+    public float forceAcceleration;
+    public float forceFall;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rotationShip = transform.parent.rotation.x;
         Debug.Log(rotationShip);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         rotationShip = transform.parent.rotation.x;
         movePlayerInclination();
     }
 
     public void movePlayer(bool moveLeft, float speed)
     {
-        
+
         if (moveLeft)
         {
-           if (rotationShip > 0) speed -= forceAcceleration * rotationShip;
-           else speed -= forceAcceleration * rotationShip;
-           transform.Translate(-Vector3.forward * Time.deltaTime * speed);
+            if (rotationShip > 0) speed -= forceAcceleration * rotationShip;
+            else speed -= forceAcceleration * rotationShip;
+            transform.Translate(-Vector3.forward * Time.deltaTime * speed);
         }
         else
         {
@@ -41,3 +44,4 @@ public class Move : MonoBehaviour {
         else transform.Translate(Vector3.forward * Time.deltaTime * rotationShip * forceFall);
     }
 }
+
