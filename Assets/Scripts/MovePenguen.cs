@@ -6,7 +6,7 @@ public class MovePenguen : MonoBehaviour
     public float RSpeed = 25;
     public float speed = 0.01f;
     private float pesoOriginal;
-    private bool go = true;
+    private bool go = false;
     private int IdEvento;
    
     GameObject ship;
@@ -21,7 +21,11 @@ public class MovePenguen : MonoBehaviour
     void Update()
     {
         transform.parent.Rotate(Vector3.right * Time.deltaTime * RSpeed, Space.World);
-
+        if (go)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -48,12 +52,18 @@ public class MovePenguen : MonoBehaviour
             transform.Rotate(-Vector3.right * Time.deltaTime * 150, Space.World);
             yield return null;
         }
-        //IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
+        if  (GameObject.FindGameObjectWithTag("barco").transform.position.z > transform.position.z)
+            IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal,true);
+        else IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal, false);
         Invoke("GoAway", 5);
     }
     void GoAway()
     {
+      this.transform.parent.transform.parent = null;
       GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().removePeso(IdEvento);
-       go  = true;
+      transform.LookAt(Camera.main.transform);
+      gameObject.GetComponent<BoxCollider>().enabled = false;
+      Destroy(gameObject, 20);
+      go  = true;
     }
 }
