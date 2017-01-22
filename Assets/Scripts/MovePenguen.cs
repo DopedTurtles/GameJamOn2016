@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MovePenguen : MonoBehaviour
 {
-    public float RSpeed = 25;
+    public float RSpeed = 40;
     public float speed = 0.01f;
     private float pesoOriginal;
     private bool go = false;
@@ -29,6 +29,7 @@ public class MovePenguen : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        
         if (other.tag == "PinguinStop")
         {
             RSpeed = 0;
@@ -47,12 +48,12 @@ public class MovePenguen : MonoBehaviour
     }
     IEnumerator Levantar()
     {
-        for (int f = 0; f < 40; f++)
+        for (int f = 0; f < 30; f++)
         {
             transform.Rotate(-Vector3.right * Time.deltaTime * 150, Space.World);
             yield return null;
         }
-        if  (GameObject.FindGameObjectWithTag("barco").transform.position.z > transform.position.z)
+        if  (GameObject.FindGameObjectWithTag("barco").transform.position.z < transform.position.z)
             IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal,true);
         else IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal, false);
         Invoke("GoAway", 5);

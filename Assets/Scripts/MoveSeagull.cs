@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MoveSeagull : MonoBehaviour {
     public Transform siteToGo;
-    public GameObject punto;
     private float distance ;
     public float speedSeagull = 10;
     private float pesoOriginal;
@@ -24,7 +23,6 @@ public class MoveSeagull : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(go);
         if (!go)
         {
             transform.LookAt(siteToGo.position);
@@ -43,7 +41,8 @@ public class MoveSeagull : MonoBehaviour {
                 this.transform.parent = siteToGo.transform.parent;
                 if (!onlyOneTime2)
                 {
-                    if (punto.tag.Equals("Punto_1")) evento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal,true);
+                    if (GameObject.FindGameObjectWithTag("barco").transform.position.z < transform.position.z)
+                        evento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal, true);
                     else evento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal, false);
                 }
                    
