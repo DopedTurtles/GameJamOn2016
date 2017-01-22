@@ -20,13 +20,13 @@ public class CSharkController : MonoBehaviour
         int rand = Random.Range(0, 1);
         if (rand == 0)
         {
-            target = GameObject.FindGameObjectWithTag("backBoat").GetComponent<Transform>();
+            target = GameObject.FindGameObjectWithTag("Punto_1").GetComponent<Transform>();
             this.transform.position = new Vector3(target.position.x, target.position.y - offsetY, target.position.z - offsetZ);
         }
 
         else
         {
-            target = GameObject.FindGameObjectWithTag("frontBoat").GetComponent<Transform>();
+            target = GameObject.FindGameObjectWithTag("Punto_2").GetComponent<Transform>();
             this.transform.position = new Vector3(target.position.x, target.position.y - offsetY, target.position.z + offsetZ);
         }
         stop = false;
