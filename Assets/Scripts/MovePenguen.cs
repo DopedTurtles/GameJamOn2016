@@ -48,7 +48,7 @@ public class MovePenguen : MonoBehaviour
             transform.Rotate(-Vector3.right * Time.deltaTime * 150, Space.World);
             yield return null;
         }
-        IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
+        //IdEvento = GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
         Invoke("GoAway", 5);
     }
     void GoAway()

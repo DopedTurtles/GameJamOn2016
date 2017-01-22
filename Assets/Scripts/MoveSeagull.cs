@@ -42,7 +42,7 @@ public class MoveSeagull : MonoBehaviour {
                 this.transform.parent = siteToGo.transform.parent;
                 if (!onlyOneTime2)
                 {
-                evento =  GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
+                //evento =  GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().addPeso(pesoOriginal);
                     Debug.Log("aki");
                 }
                 onlyOneTime2 = true;

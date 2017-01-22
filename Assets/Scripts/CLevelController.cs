@@ -40,7 +40,7 @@ public class CLevelController : MonoBehaviour {
     /*
      * GameOver: Llamada al metodo que provoca la llamada al metodo PedirGameOver de GameController
      */
-    void PedirGameOver()
+    public void PedirGameOver()
     {
         gameController.GameOver();
     }
