@@ -40,14 +40,14 @@ public class MovePenguen : MonoBehaviour
     {
         for (int f = 0; f < 15; f++)
         {
-            transform.Translate(Vector3.up * Time.deltaTime * 20f);
+            transform.Translate(Vector3.up * Time.deltaTime * 25f);
             yield return null;
         }
         StartCoroutine("Levantar");
     }
     IEnumerator Levantar()
     {
-        for (int f = 0; f < 40; f++)
+        for (int f = 0; f < 30; f++)
         {
             transform.Rotate(-Vector3.right * Time.deltaTime * 150, Space.World);
             yield return null;

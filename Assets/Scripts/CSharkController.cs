@@ -4,66 +4,51 @@ using System.Collections;
 public class CSharkController : MonoBehaviour
 {
     public float sharkVelocidad = 10f;
-    public float umbral = 1f;
-    public float offsetY = 10f;
-    public float offsetZ = 10f;
-    public float destroyDistance=10f;
-    public Transform despawner;
-    Transform target;
+    public float destroyDistance=200f;
+    public float hitForce = 20;
+    public float offsetX = 65f;
+    public float umbral = 10f;
+    private Transform boatTransform;
+    public CBarcoController barcoController;
+    int type;
+    private float distanciaRecorrida;
+    private bool chocado;
 
-    private int idEvento;
-    private bool stop;
-    private bool waited;
     // Use this for initialization
     void Start()
     {
-        int rand = Random.Range(0, 1);
-        if (rand == 0)
-        {
-            target = GameObject.FindGameObjectWithTag("Punto_1").GetComponent<Transform>();
-            this.transform.position = new Vector3(target.position.x, target.position.y - offsetY, target.position.z - offsetZ);
-        }
+        chocado = false;
+        distanciaRecorrida = 0;
+        boatTransform = GameObject.FindGameObjectWithTag("barco").GetComponent<Transform>();
+        type = Random.Range(0,2);
 
+        if (type == 0)
+            transform.position = new Vector3(boatTransform.position.x - offsetX, boatTransform.position.y, -9);
         else
-        {
-            target = GameObject.FindGameObjectWithTag("Punto_2").GetComponent<Transform>();
-            this.transform.position = new Vector3(target.position.x, target.position.y - offsetY, target.position.z + offsetZ);
-        }
-        stop = false;
-        waited = false;
+            transform.position = new Vector3(boatTransform.position.x - offsetX, boatTransform.position.y, 6);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.position) > umbral && !stop)
+        transform.position = new Vector3(transform.position.x, boatTransform.position.y, transform.position.z);
+        transform.Translate(new Vector3(0,0, sharkVelocidad * Time.deltaTime));
+
+        if(Vector3.Distance(transform.position,GameObject.FindGameObjectWithTag("barco").GetComponent<Transform>().position) < umbral && !chocado)
         {
-            Vector3 dir = target.position - transform.position;
-            transform.Translate(dir * sharkVelocidad * Time.deltaTime);
-            transform.LookAt(target);
-        }
-        else
-        {
-            //Llegado al punto y mordido el barco
-            if (!stop)
+            if (type == 0)
             {
-                Debug.Log("Llego");
-                stop = true;
-                transform.LookAt(despawner);
+                GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().incrementRotationSpeed(hitForce);
+                //if(!GameObject.Find("Barco").GetComponent<CBarcoController>()) Debug.Log("No encuento controller2"); ;
+                //barcoController.incrementRotationSpeed(hitForce);
             }
+                else
+                GameObject.FindGameObjectWithTag("barco").GetComponent<CBarcoController>().incrementRotationSpeed(-hitForce);
+                //barcoController.incrementRotationSpeed(-hitForce);
+            chocado = true;
         }
-        if (stop && Vector3.Distance(transform.position, despawner.position) > umbral)
-        {
-            Vector3 dir = despawner.position - transform.position;
-            
-            transform.Translate(dir * sharkVelocidad * Time.deltaTime);
-        }
-        else
-        {
-            //Destroy(this.gameObject);
-        }
-    }
-
-
-
+        distanciaRecorrida += sharkVelocidad * Time.deltaTime;
+        if (distanciaRecorrida >= destroyDistance)
+            Destroy(this.gameObject);
+}
 }

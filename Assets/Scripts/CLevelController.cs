@@ -42,6 +42,9 @@ public class CLevelController : MonoBehaviour {
      */
     public void PedirGameOver()
     {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CCameraController>().siguiendo = false;
+        GameObject.FindGameObjectWithTag("EventsController").GetComponent<EventsController>().spawning = false;
+
         gameController.GameOver();
     }
 

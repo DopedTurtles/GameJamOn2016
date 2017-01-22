@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     public float limitLeft = -6f;
     public float limitRight = 6f;
     public float t = 0;
+    public float rotacion = 0;
     // Use this for initialization
     void Start()
     {
@@ -36,20 +37,24 @@ public class Move : MonoBehaviour
         {
             if (rotationShip > 0) speed -= forceAcceleration * rotationShip;
             else speed -= forceAcceleration * rotationShip;
-            transform.Translate(-Vector3.forward * Time.deltaTime * speed);
+            this.transform.localPosition = new Vector3(0, 3, this.transform.localPosition.z);
+            transform.Translate(this.transform.forward * Time.deltaTime * speed);
+            this.transform.localRotation = Quaternion.Euler(this.transform.localRotation.eulerAngles.x, rotacion, this.transform.localRotation.eulerAngles.z);
         }
         else
         {
             if (rotationShip > 0) speed += forceAcceleration * rotationShip;
             else speed += forceAcceleration * rotationShip;
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            this.transform.localPosition = new Vector3(-1, 3, this.transform.localPosition.z);
+            transform.Translate(-this.transform.forward * Time.deltaTime * speed);
+            this.transform.localRotation = Quaternion.Euler(this.transform.localRotation.eulerAngles.x, -rotacion, this.transform.localRotation.eulerAngles.z);
         }
     }
 
     public void movePlayerInclination()
     {
-        if (rotationShip > 0) transform.Translate(Vector3.forward * Time.deltaTime * rotationShip * forceFall);
-        else transform.Translate(Vector3.forward * Time.deltaTime * rotationShip * forceFall);
+        if (rotationShip > 0) transform.Translate(-this.transform.forward * Time.deltaTime * rotationShip * forceFall);
+        else transform.Translate(this.transform.forward * Time.deltaTime * rotationShip * forceFall);
     }
 }
 

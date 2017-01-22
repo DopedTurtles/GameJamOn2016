@@ -57,6 +57,5 @@ public class CGameController : MonoBehaviour {
     */
     public void GameOver()
     {
-        SceneManager.LoadScene(gameOverScene);
-    }
+        GameObject.FindGameObjectWithTag("gameOverMenu").GetComponent<Canvas>().enabled = true;    }
 }

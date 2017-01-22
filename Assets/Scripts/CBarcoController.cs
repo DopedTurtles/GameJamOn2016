@@ -189,7 +189,7 @@ public class CBarcoController : MonoBehaviour
 	IEnumerator EndGame()
 	{
 		yield return new WaitForSeconds (mEndDelay);
-		GameObject levelControllerObject = GameObject.FindGameObjectWithTag("GameController");
+		GameObject levelControllerObject = GameObject.FindGameObjectWithTag("LevelController");
 		if(levelControllerObject)
 		{
 			CLevelController levelController = levelControllerObject.GetComponent<CLevelController>();

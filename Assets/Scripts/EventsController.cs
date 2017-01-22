@@ -6,6 +6,7 @@ public class EventsController : MonoBehaviour {
 
     public List<GameObject> eventos;
     public float cdEvento;
+    public bool spawning = true;
 
     private float temporizaor;
     private bool jump;
@@ -14,16 +15,19 @@ public class EventsController : MonoBehaviour {
 	}
 	
 	void Update () {
-        if(temporizaor>=cdEvento)
-            LlamarEventoRandom();
-        temporizaor += Time.deltaTime;
+        if (spawning)
+        {
+            if (temporizaor >= cdEvento)
+                LlamarEventoRandom();
+            temporizaor += Time.deltaTime;
+        }
 	}
 
     void LlamarEventoRandom()
     {
         int chosen = Random.Range(0,eventos.Count);
-        if (eventos[chosen].name.Equals("Seagull") ){ eventos[chosen].GetComponent<MoveSeagull>().siteToGo = GameObject.FindWithTag("Punto_1").transform; }
-        if (eventos[chosen].name.Equals("Seagull2")) { eventos[chosen].GetComponent<MoveSeagull>().siteToGo = GameObject.FindWithTag("Punto_2").transform; }
+        if (eventos[chosen].name.Equals("gaviota") ){ eventos[chosen].GetComponent<MoveSeagull>().siteToGo = GameObject.FindWithTag("Punto_1").transform; }
+        if (eventos[chosen].name.Equals("gaviota2")) { eventos[chosen].GetComponent<MoveSeagull>().siteToGo = GameObject.FindWithTag("Punto_2").transform; }
         if (eventos[chosen].name.Equals("RotorPinguin")) {
 
             GameObject myBrick = Instantiate(eventos[chosen]);

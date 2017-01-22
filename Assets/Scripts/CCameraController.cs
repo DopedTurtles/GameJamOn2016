@@ -8,6 +8,7 @@ public class CCameraController : MonoBehaviour
     public float umbral = 2f;
     public float velocidadDeSeguimiento = 1f;
     public float camaraOffsetY = 5f;
+    public bool siguiendo = true;
     // Use this for initialization
     void Start()
     {
@@ -17,10 +18,13 @@ public class CCameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Mathf.Abs(barco.position.y - transform.position.y) > umbral)
+        if (siguiendo)
         {
-            //transform.Translate(new Vector3(0, (barco.position.y - transform.position.y) * velocidadDeSeguimiento * Time.deltaTime, 0));
-            transform.position = new Vector3(transform.position.x, barco.position.y + camaraOffsetY, barco.position.z);
+            if (Mathf.Abs(barco.position.y - transform.position.y) > umbral)
+            {
+                //transform.Translate(new Vector3(0, (barco.position.y - transform.position.y) * velocidadDeSeguimiento * Time.deltaTime, 0));
+                transform.position = new Vector3(transform.position.x, barco.position.y + camaraOffsetY, barco.position.z);
+            }
         }
     }
 }
